@@ -3,75 +3,148 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
 const generateMarkdown = require('./utils/generateMarkdown');
-const util = require('util');
+const path = require("path")
 
-const writeFileAsync = util.promisify(fs.writeFile); 
-
-const questions = () => {
-    return inquirer.prompt([
+const questions = [
         {
           type: "input",
           message: "What is your user GitHub username?",
-          name: "username"
+          name: "username",
+          validate: (answer) => {
+              if(answer !== "") {
+                  return true
+              }
+              return "No blank fields"
+          }
         },
         {
           type: "input",
           message: "What is your email?",
-          name: "email"
+          name: "email",
+          validate: (answer) => {
+            if(answer !== "") {
+                return true
+            }
+            return "No blank fields"
+        }
         },
         {
           type: "input",
           message: "What is the title of your project?",
-          name: "title"
+          name: "title",
+          validate: (answer) => {
+            if(answer !== "") {
+                return true
+            }
+            return "No blank fields"
+        }
         },
         {
           type: "input",
           message: "Please provide a short description of your project.",
-          name: "description"
+          name: "description",
+          validate: (answer) => {
+            if(answer !== "") {
+                return true
+            }
+            return "No blank fields"
+        }
         },
         {
           type: "input",
           message: "What packages need to be installed to run your project.",
-          name: "installation"
+          name: "installation",
+          validate: (answer) => {
+            if(answer !== "") {
+                return true
+            }
+            return "No blank fields"
+        }
         },
         {
           type: "input",
           message: "What technologies were used to create your project.",
-          name: "technology"
+          name: "technology",
+          validate: (answer) => {
+            if(answer !== "") {
+                return true
+            }
+            return "No blank fields"
+        }
         },
         {
           type: "input",
           message: "Please provide an example of how your project can be used.",
-          name: "usage"
+          name: "usage",
+          validate: (answer) => {
+            if(answer !== "") {
+                return true
+            }
+            return "No blank fields"
+        }
         },
         {
           type: "list",
           name: "license",
           message: "What kind of license would you like to have?",
           name: "license",
-          choices: ["MIT", "APACHE 2.0", "GPL v3", "BSD 3", "None"]
-        },
+          choices: [
+            {
+            name: "MIT",
+            value: "MIT"
+            },
+            {
+            name:"APACHE 2.0",
+            value: "APACHE%202.0"
+            },
+            {
+            name:"GPL v3",
+            value: "GPL%20v3"
+            },
+            {
+            name:"BSD 3",
+            value: "BSD%203"
+            },
+            {
+            name:"None",
+            value: "None"
+            }
+          ]},
         {
           type: "input",
           message: "Including yourself, please list out all contributors",
-          name: "contributer"
+          name: "contributer",
+          validate: (answer) => {
+            if(answer !== "") {
+                return true
+            }
+            return "No blank fields"
+        }
         },
         {
           type: "input",
           message: "What command is used to run a test",
           name: "tests",
+          validate: (answer) => {
+            if(answer !== "") {
+                return true
+            }
+            return "No blank fields"
         }
-      ]);
-    }; 
+        }
+      ];
 
 // function to write README file
 function writeToFile(fileName, data) {
+    fs.writeFileSync(path.join(process.cwd(), fileName), data)
 }
 
 // function to initialize program
 function init() {
-
+    inquirer.prompt(questions).then((answers) => {
+        console.log(answers)
+       writeToFile("README.md", generateMarkdown(answers))
+    })
 }
-
 // function call to initialize program
 init();
