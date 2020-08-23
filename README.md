@@ -1,7 +1,7 @@
 # README Generator
 
   ## Description
-  > generates a README.md file for any project
+A command-line application that dynamically generates a README.md from a user's input. The application will be invoked with the following command:
 
   ## Table of Contents
   - [Installation](#installation)
@@ -14,7 +14,9 @@
   Packages required to run this program are: inquirer
   
   ## Usage
-  Examples of how to use this program: n/a
+  Examples of how to use this program: 
+  
+  ![home](https://github.com/hannahjorich/README-Generator/blob/master/assets/demo.gif)
 
   ## Tests
   To test, run the following command: n/a
