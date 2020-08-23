@@ -1,7 +1,7 @@
-# readme generator
+# README Generator
 
   ## Description
-  > generators a readme file
+  > generates a README.md file for any project
 
   ## Table of Contents
   - [Installation](#installation)
@@ -11,16 +11,16 @@
   - [Contributors](#contributors)
 
   ## Installation
-  Packages required to run this program are: npm
+  Packages required to run this program are: inquirer
   
   ## Usage
-  Examples of how to use this program: na
+  Examples of how to use this program: n/a
 
   ## Tests
   To test, run the following command: n/a
 
   ## Contributors
-  hannah jorich
+  Hannah Jorich
 
   ## License
   ![license](https://img.shields.io/badge/license-APACHE%202.0-blue.svg)
